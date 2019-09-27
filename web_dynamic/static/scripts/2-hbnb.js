@@ -2,9 +2,9 @@ window.addEventListener('load', function () {
   $.ajax('http://0.0.0.0:5001/api/v1/status').done(function (data) {
     console.log('We got the status and its: ' + data.status);
     if (data.status === "OK") {
-      $("div#api_status").addClass('available');
+      $("#api_status").addClass('available');
     } else {
-      $("div#api_status").removeClass('available');
+      $("#api_status").removeClass('available');
     }
   });
   let amenityIds = {};
