@@ -7,6 +7,10 @@ window.addEventListener('load', function () {
     } else if (!$(this).prop('checked')) {
       delete amenityIds[$(this).attr('data-id')];
     }
-    $('div.amenities h4').text(Object.values(amenityIds).join(', '));
+    if (Object.keys(amenityIds).length === 0) {
+      $('div.amenities h4').html('&nbsp');
+    } else {
+      $('div.amenities h4').text(Object.values(amenityIds).join(', '));
+    }
   });
 });
