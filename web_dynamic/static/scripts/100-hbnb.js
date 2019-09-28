@@ -24,19 +24,21 @@ window.addEventListener('load', function () {
   });
 
   // task 4
-$('.filters button').click(function () {
-  $.ajax({
-    type: 'POST',
-    url: 'http://0.0.0.0:5001/api/v1/places_search/',
-    contentType: 'application/json',
-    data: JSON.stringify({'amenities': Object.keys(amenityIds),
-			 'states': Object.keys(stateIds),
-			 'cities': Object.keys(cityIds)})
-  }).done(function (data) {
-    $('section.places').empty();
-    $('section.places').append('<h1>Places</h1>');
-    for (const place of data) {
-      const template = `<article>
+  $('.filters button').click(function () {
+    $.ajax({
+      type: 'POST',
+      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        amenities: Object.keys(amenityIds),
+        states: Object.keys(stateIds),
+        cities: Object.keys(cityIds)
+      })
+    }).done(function (data) {
+      $('section.places').empty();
+      $('section.places').append('<h1>Places</h1>');
+      for (const place of data) {
+        const template = `<article>
         <div class="title">
         <h2>${place.name}</h2>
         <div class="price_by_night">
@@ -75,39 +77,41 @@ $('.filters button').click(function () {
       </div>
 
       </article> <!-- End 1 PLACE Article -->`;
-      $('section.places').append(template);
-    }
+        $('section.places').append(template);
+      }
+    });
   });
-});
 
   // task 6
   const stateIds = {};
   const cityIds = {};
-  $('.stateCheckBox input[type=checkbox]').click(function () {
+  $('.stateCheckBox').click(function () {
     if ($(this).prop('checked')) {
+      console.log('A box was checked');
       stateIds[$(this).attr('data-id')] = $(this).attr('data-name');
     } else if (!$(this).prop('checked')) {
+      console.log('A box was un-checked');
       delete stateIds[$(this).attr('data-id')];
     }
-    if (Object.keys(stateIds).length === 0 && Object.keys(cityIds).length === 0 ) {
-      $('div.locations h4').html('&nbsp;');
+    if (Object.keys(stateIds).length === 0 && Object.keys(cityIds).length === 0) {
+      $('.locations h4').html('&nbsp;');
     } else {
-      $('div.locations h4').text(Object.values(stateIds).push(Object.values(cityIds)).join(', '));
+      $('.locations h4').text(Object.values(stateIds).concat(Object.values(cityIds)).join(', '));
     }
   });
 
-  $('.cityCheckBox input[type=checkbox]').click(function () {
+  $('.cityCheckBox').click(function () {
     if ($(this).prop('checked')) {
+      console.log('A box was checked');
       cityIds[$(this).attr('data-id')] = $(this).attr('data-name');
     } else if (!$(this).prop('checked')) {
+      console.log('A box was un-checked');
       delete cityIds[$(this).attr('data-id')];
     }
     if (Object.keys(stateIds).length === 0 && Object.keys(cityIds).length === 0) {
-      $('div.locations h4').html('&nbsp;');
+      $('.locations h4').html('&nbsp;');
     } else {
-      $('div.locations h4').text(Object.values(stateIds).push(Object.values(cityIds)).join(', '));
+      $('.locations h4').text(Object.values(cityIds).concat(Object.values(stateIds)).join(', '));
     }
   });
-
 });
-

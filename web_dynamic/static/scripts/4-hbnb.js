@@ -24,17 +24,17 @@ window.addEventListener('load', function () {
   });
 
   // task 4
-$('.filters button').click(function () {
-  $.ajax({
-    type: 'POST',
-    url: 'http://0.0.0.0:5001/api/v1/places_search/',
-    contentType: 'application/json',
-    data: JSON.stringify({'amenities': Object.keys(amenityIds)})
-  }).done(function (data) {
-    $('section.places').empty();
-    $('section.places').append('<h1>Places</h1>');
-    for (const place of data) {
-      const template = `<article>
+  $('.filters button').click(function () {
+    $.ajax({
+      type: 'POST',
+      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      contentType: 'application/json',
+      data: JSON.stringify({ amenities: Object.keys(amenityIds) })
+    }).done(function (data) {
+      $('section.places').empty();
+      $('section.places').append('<h1>Places</h1>');
+      for (const place of data) {
+        const template = `<article>
         <div class="title">
         <h2>${place.name}</h2>
         <div class="price_by_night">
@@ -73,8 +73,8 @@ $('.filters button').click(function () {
       </div>
 
       </article> <!-- End 1 PLACE Article -->`;
-      $('section.places').append(template);
-    }
+        $('section.places').append(template);
+      }
+    });
   });
-});
 });
