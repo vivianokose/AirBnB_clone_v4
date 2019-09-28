@@ -30,7 +30,6 @@ window.addEventListener('load', function () {
     contentType: 'application/json',
     data: JSON.stringify({})
   }).done(function (data) {
-    console.log(data[0]);
     for (const place of data) {
       const template = `<article>
 
