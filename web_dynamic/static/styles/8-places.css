@@ -55,6 +55,7 @@
 	font-size: 30px;
 	text-align: center;
 	line-height: 60px;
+    padding: .3em;
 }
 
 .container .places .information {
@@ -64,6 +65,7 @@
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+    padding: 10px 0px;
 }
 
 .container .places .information .max_guest,
@@ -79,6 +81,10 @@
 
 .container .places .user {
 	margin: 20px 0 5px 0;
+}
+
+.container .places .description {
+    padding-top: 15px;
 }
 
 @media screen and (max-width: 600px) {
