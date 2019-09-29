@@ -87,10 +87,8 @@ window.addEventListener('load', function () {
   const cityIds = {};
   $('.stateCheckBox').click(function () {
     if ($(this).prop('checked')) {
-      console.log('A box was checked');
       stateIds[$(this).attr('data-id')] = $(this).attr('data-name');
     } else if (!$(this).prop('checked')) {
-      console.log('A box was un-checked');
       delete stateIds[$(this).attr('data-id')];
     }
     if (Object.keys(stateIds).length === 0 && Object.keys(cityIds).length === 0) {
@@ -102,10 +100,8 @@ window.addEventListener('load', function () {
 
   $('.cityCheckBox').click(function () {
     if ($(this).prop('checked')) {
-      console.log('A box was checked');
       cityIds[$(this).attr('data-id')] = $(this).attr('data-name');
     } else if (!$(this).prop('checked')) {
-      console.log('A box was un-checked');
       delete cityIds[$(this).attr('data-id')];
     }
     if (Object.keys(stateIds).length === 0 && Object.keys(cityIds).length === 0) {
