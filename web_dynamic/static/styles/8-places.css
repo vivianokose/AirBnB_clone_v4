@@ -94,7 +94,7 @@
 .container .places .reviews h2 {
     font-size: 16px;
     border-bottom: 1px solid #DDDDDD;
-//    text-align: left;
+    margin-top: 5px;
 }
 
 .container .places .reviews ul {
@@ -105,9 +105,9 @@
     font-size: 14px;
 }
 
-.container .places .reviews p {
+.container .places .reviews li {
     font-size: 12px;
-    margin-top: -5px;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 600px) {

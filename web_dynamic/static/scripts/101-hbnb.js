@@ -82,18 +82,20 @@ window.addEventListener('load', function () {
         $('section.places').append(template);
       }
       // Task 7: get reviews for each place (add to the places post request for loop?)
-      $('.reviewSpan').click(function (event) {
+      $('span').click(function (event) {
         $.ajax('http://0.0.0.0:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
-          console.log($(this).text());
-          if ($('.reviewSpan').text() == 'show') {
-            console.log('The text is changing from show to hide');
-            $('.reviewSpan').text('hide');
+//          console.log($(this).text());
+
+          if ($('.reviewSpan').text('show')) {
             for (const review of data) {
               $('.reviews ul').append(`<li>${review.text}</li>`);
             }
-          } else if ($('.reviewSpan').text() == 'hide') {
-            $('.reviewSpan').text('show');
+	    $('.reviewSpan').text('hide');
+	    // $('span').toggleClass('hideReview');
+	    console.log($('.reviewSpan').text());
+          } else if ($('reviewSpan').text('hide')){
             $('.reviews ul').empty();
+	    $('.reviewSpan').text('show');
           }
         });
       });
