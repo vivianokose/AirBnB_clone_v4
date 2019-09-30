@@ -23,6 +23,8 @@ window.addEventListener('load', function () {
     }
   });
 
+  const stateIds = {};
+  const cityIds = {};
   // task 4
   $('.filters button').click(function () {
     $.ajax({
@@ -32,11 +34,9 @@ window.addEventListener('load', function () {
       data: JSON.stringify({
         amenities: Object.keys(amenityIds),
         states: Object.keys(stateIds),
-        cities: Object.keys(cityIds),
-	reviews: Object.keys(reviewIds)
+        cities: Object.keys(cityIds)
       })
     }).done(function (data) {
-      console.log(data);
       $('section.places').empty();
       $('section.places').append('<h1>Places</h1>');
       for (const place of data) {
@@ -73,21 +73,34 @@ window.addEventListener('load', function () {
 	  ${place.description}
 	</div>
 	  <div class="reviews">
-	  <h2>${place.reviews} Reviews <span>show</span></2>
+	  <h2>Reviews <span class="reviewSpan" data-id="${place.id}">show</span></h2>
 	  <ul>
-	  <li></li>
 	  </ul>
-	</div>
+	  </div>
 
 	</article> <!-- End 1 PLACE Article -->`;
         $('section.places').append(template);
       }
+      // Task 7: get reviews for each place (add to the places post request for loop?)
+      $('.reviewSpan').click(function (event) {
+        $.ajax('http://0.0.0.0:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
+          console.log($(this).text());
+          if ($('.reviewSpan').text() == 'show') {
+            console.log('The text is changing from show to hide');
+            $('.reviewSpan').text('hide');
+            for (const review of data) {
+              $('.reviews ul').append(`<li>${review.text}</li>`);
+            }
+          } else if ($('.reviewSpan').text() == 'hide') {
+            $('.reviewSpan').text('show');
+            $('.reviews ul').empty();
+          }
+        });
+      });
     });
   });
 
   // task 6
-  const stateIds = {};
-  const cityIds = {};
   $('.stateCheckBox').click(function () {
     if ($(this).prop('checked')) {
       stateIds[$(this).attr('data-id')] = $(this).attr('data-name');
@@ -113,14 +126,4 @@ window.addEventListener('load', function () {
       $('.locations h4').text(Object.values(cityIds).concat(Object.values(stateIds)).join(', '));
     }
   });
-
-  // Task 7
-  const reviewIds = {};
-  $('.reviews span').click(function () {
-    console.log(reviewIds);
-    $('.reviews h2').text(Object.keys(reviewIds).length);
-    console.log(Object.keys(reviewIds));
-    $('.reviews li').add(Object.values(reviewIds));
-  });
-
 });
