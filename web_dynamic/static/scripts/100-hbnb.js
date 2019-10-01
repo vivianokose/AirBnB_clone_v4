@@ -23,6 +23,8 @@ window.addEventListener('load', function () {
     }
   });
 
+  const stateIds = {};
+  const cityIds = {};
   // task 4
   $('.filters button').click(function () {
     $.ajax({
@@ -83,8 +85,6 @@ window.addEventListener('load', function () {
   });
 
   // task 6
-  const stateIds = {};
-  const cityIds = {};
   $('.stateCheckBox').click(function () {
     if ($(this).prop('checked')) {
       stateIds[$(this).attr('data-id')] = $(this).attr('data-name');
