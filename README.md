@@ -211,7 +211,7 @@ Repo forked from the V3 made by:
  * Jared Heck, [jarehec](https://github.com/jarehec) | [@jarehec](https://twitter.com/jarehec)
 
 V4 made by:
- * Laura Roudge, [lroudge](https://github.com/lroudge) | [@LRoudge](https://twitter.com/LRoudge)
+ * Laura Roudge, [lroudge](https://github.com/lroudge) | [@LRoudge](https://twitter.com/LRoudge) | [/in/lauraroudge](https://www.linkedin.com/in/lauraroudge/): Full-stack Software Engineer, passionate about helping and teachings peers, located in the Paris area, France.
  * Nga La, [sungnga](https://github.com/sungnga) | [@_ngala](https://twitter.com/_ngala)
 
 ## License
